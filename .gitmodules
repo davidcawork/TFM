@@ -1,0 +1,3 @@
+[submodule "doc/tfm-thesis"]
+	path = doc/tfm-thesis
+	url = https://github.com/davidcawork/tfm-thesis

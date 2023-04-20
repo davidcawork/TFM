@@ -24,6 +24,3 @@ cd ryu
 sudo pip3 install -r tools/pip-requires -r tools/optional-requires \
     -r tools/test-requires
 sudo python3 setup.py install
-
-# Add symbolic link to /usr/bin
-sudo ln -fs ./bin/ryu-manager /usr/local/bin/ryu-manager

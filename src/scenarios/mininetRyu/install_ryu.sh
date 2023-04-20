@@ -9,8 +9,11 @@ echo "[+] Installing Ryu..."
 INSTALL='sudo DEBIAN_FRONTEND=noninteractive apt-get -y -q install'
 BUILD_DIR=${HOME}
 
+# Update
+sudo apt-get update
+
 # Install Ryu dependencies
-$INSTALL autoconf automake g++ libtool python3 make gcc python3-pip python3-dev libffi-dev libssl-dev libxml2-dev libxslt1-dev zlib1g-dev
+$INSTALL autoconf automake git g++ libtool python3 make gcc python3-pip python3-dev libffi-dev libssl-dev libxml2-dev libxslt1-dev zlib1g-dev
 
 # Fetch RYU
 cd $BUILD_DIR/

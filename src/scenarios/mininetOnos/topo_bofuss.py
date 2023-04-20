@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from mininet.net import Mininet
-from mininet.node import Controller, RemoteController, OVSController, Ryu
-from mininet.node import CPULimitedHost, Host, Node
-from mininet.node import OVSKernelSwitch, UserSwitch
+from mininet.node import RemoteController
+from mininet.node import CPULimitedHost, Host
+from mininet.node import UserSwitch
 from mininet.cli import CLI
 from mininet.log import setLogLevel, info
 from mininet.link import TCLink
@@ -25,8 +25,8 @@ def scenario_basic():
                             port = 6633)
 
     info('*** Add two switchs ***\n')
-    s1 = net.addSwitch('s1', cls = OVSKernelSwitch, protocols = 'OpenFlow13')
-    s2 = net.addSwitch('s2', cls = OVSKernelSwitch, protocols = 'OpenFlow13')
+    s1 = net.addSwitch('s1', cls = UserSwitch)
+    s2 = net.addSwitch('s2', cls = UserSwitch)
 
 
     info('*** Add Host ***\n')

@@ -25,15 +25,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     # Let's configure the machine running MiniNet machine.
-    #config.vm.define "mininetTest" do |mininetTest|
-        #mininetTest.vm.hostname = 'mininetTest'
+    config.vm.define "mininetTest" do |mininetTest|
+        mininetTest.vm.hostname = 'mininetTest'
 
         # It'll be assiged IPv4 address 192.168.56.2 on VirtualBox's NATted network.
-        #mininetTest.vm.network :private_network,ip:"192.168.56.2"
+        mininetTest.vm.network :private_network,ip:"192.168.56.2"
+
+        # We'll copy all the necessary files 
+        mininetTest.vm.provision "file", source: "./topo.py", destination: "/home/vagrant/topo.py"
 
         # We'll run the following script to install Mininet
-        #mininetTest.vm.provision "shell", :path => "./install_mininet.sh"
-    # end
+        mininetTest.vm.provision "shell", :path => "./install_mininet.sh"
+    end
 
 
     # Let's configure the machine running Controller (Ryu) machine.

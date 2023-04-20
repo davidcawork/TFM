@@ -33,4 +33,19 @@ Para reiniciar Onos:
 $ onos-service --cell restart'
 $ sudo kill `sudo lsof -t -i:6633`
 $ sudo kill `sudo lsof -t -i:6653`
+$ bazel run onos-local clean
 ```
+
+Para entrar en la CLI de onos:
+
+```bash 
+ssh -p 8101 karaf@localhost (pwd: karaf)
+```
+
+Para borrar la topologia, nos conectanos a la CLI de Onos
+
+```bash 
+karaf@root > onos:wipe-out please 
+```
+
+:joy: que te diga que lo tienes que pedir "por favor" me parto :joy:

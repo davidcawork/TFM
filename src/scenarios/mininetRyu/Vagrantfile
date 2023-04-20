@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "mininetTest" do |mininetTest|
         mininetTest.vm.hostname = 'mininetTest'
 
-        # It'll be assiged IPv4 address 10.0.123.2 on VirtualBox's NATted network.
+        # It'll be assiged IPv4 address 192.168.56.2 on VirtualBox's NATted network.
         mininetTest.vm.network :private_network,ip:"192.168.56.2"
 
         # We'll run the following script to install Mininet
@@ -40,7 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "controller" do |controller|
         controller.vm.hostname = 'controller'
 
-        # It'll be assiged IPv4 address 10.0.123.2 on VirtualBox's NATted network.
+        # It'll be assiged IPv4 address 192.168.56.3 on VirtualBox's NATted network.
         controller.vm.network :private_network,ip:"192.168.56.3"
 
         # We'll run the following script to install Mininet

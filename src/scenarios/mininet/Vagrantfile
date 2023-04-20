@@ -27,5 +27,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Let's configure the machine running MiniNet machine.
     config.vm.define "mininetTest" do |mininetTest|
         mininetTest.vm.hostname = 'mininetTest'
+
+        # We'll run the following script to install Mininet
+        mininetTest.vm.provision "shell", :path => "./install_mininet.sh"
     end
 end

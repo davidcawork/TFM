@@ -18,6 +18,15 @@ bazel run onos-local -- clean debug
 
 Importante, tiene que estar activadas las apps de reactive forwarding y las de openflow.
 
+Para ver la GUI de onos podemos acceder a la url:  [http://localhost:8181/onos/ui](http://localhost:8181/onos/ui) 
+
+Contraseña: **`onos/rocks`**
+
+*   Press H to show all hosts in topology
+*   Press P to highlight the port of each link
+*   Press T to change into night mode
+
+
 Para reiniciar Onos:
 
 ```bash

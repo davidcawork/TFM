@@ -33,7 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         # We'll run the following script to install Mininet
         #mininetTest.vm.provision "shell", :path => "./install_mininet.sh"
-    #end
+    # end
 
 
     # Let's configure the machine running Controller (Ryu) machine.
@@ -44,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         controller.vm.network :private_network,ip:"192.168.56.3"
 
         # We'll run the following script to install Mininet
-        controller.vm.provision "shell", :path => "./install_ryu.sh"
+        #controller.vm.provision "shell", :path => "./install_ryu.sh"
     end
 
 end

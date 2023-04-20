@@ -28,7 +28,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "mininetTest" do |mininetTest|
         mininetTest.vm.hostname = 'mininetTest'
 
+        # It'll be assiged IPv4 address 10.0.123.2 on VirtualBox's NATted network.
+        mininetTest.vm.network :private_network,ip:"10.0.123.2"
+
         # We'll run the following script to install Mininet
         mininetTest.vm.provision "shell", :path => "./install_mininet.sh"
     end
+
+
+    # Let's configure the machine running Controller (Ryu) machine.
+    config.vm.define "controller" do |controller|
+        controller.vm.hostname = 'controller'
+
+        # It'll be assiged IPv4 address 10.0.123.2 on VirtualBox's NATted network.
+        controller.vm.network :private_network,ip:"10.0.123.3"
+
+        # We'll run the following script to install Mininet
+        controller.vm.provision "shell", :path => "./install_ryu.sh"
+    end
+
 end

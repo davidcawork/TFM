@@ -4,6 +4,7 @@
 # Install MiniNet #
 ###################
 
+echo "[+] Installing Mininet..."
 
 # Install needed dependencies.
 sudo apt-get update && apt-get install -y git

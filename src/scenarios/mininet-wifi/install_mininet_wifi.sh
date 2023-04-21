@@ -10,10 +10,10 @@ echo "[+] Installing Mininet-Wifi..."
 sudo apt-get update && apt-get install -y git
 
 # Clonamos el repositorio de Mininet
-git clone https://github.com/davidcawork/mininet.git
+git clone https://github.com/intrig-unicamp/mininet-wifi
 
 # Lanzamos el script de instalación (Openflow 1.3 - Ryu - Wireshark dissector)
-sudo ./mininet/util/install.sh -3fmnyv
+sudo ./mininet-wifi/util/install.sh -3Wlfnv
 
 # Test installation
-sudo mn --test ping
+sudo mn --wifi --test ping

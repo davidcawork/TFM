@@ -1,0 +1,53 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    #  The machines will be running Ubuntu 22.04 
+    config.vm.box = "ubuntu/jammy64"
+  
+    # These settings enable X11 forwarding so that native
+    # Linux users can just run a graphic application
+    # on the VMs and have that displayed by their local
+    # X11 server. This concerns the xterm command on
+    # mininet, for instance.
+    config.ssh.forward_agent = true
+    config.ssh.forward_x11 = true
+
+    # We'll allocate 1 GiB of memory to each VM.
+    config.vm.provider "virtualbox" do |v|
+        v.customize ["modifyvm", :id, "--memory", 4096]
+    end
+
+    # Let's configure the machine running MiniNet machine.
+    config.vm.define "mininetWifiTest" do |mininetWifiTest|
+        mininetWifiTest.vm.hostname = 'mininetWifiTest'
+
+        # It'll be assiged IPv4 address 192.168.56.2 on VirtualBox's NATted network.
+        mininetWifiTest.vm.network :private_network,ip:"192.168.56.2"
+
+        # We'll copy all the necessary files 
+        mininetWifiTest.vm.provision "file", source: "./topo.py", destination: "/home/vagrant/topo.py"
+
+        # We'll run the following script to install Mininet
+        mininetWifiTest.vm.provision "shell", :path => "./install_mininet_wifi.sh"
+    end
+
+
+    # Let's configure the machine running Controller (Ryu) machine.
+    config.vm.define "controller" do |controller|
+        controller.vm.hostname = 'controller'
+
+        # It'll be assiged IPv4 address 192.168.56.3 on VirtualBox's NATted network.
+        controller.vm.network :private_network,ip:"192.168.56.3"
+
+        # We'll run the following script to install Mininet
+        controller.vm.provision "shell", :path => "./install_onos.sh", privileged: false
+    end
+
+end

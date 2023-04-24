@@ -13,8 +13,6 @@ def scenario_basic():
 
     info("*** Creating nodes\n")
     
-    
-
     info('*** Add Controller (Ryu) ***\n')
     c0 = net.addController( name = 'c0',
                             controller = RemoteController,

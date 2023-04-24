@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 
 from mn_wifi.net import Mininet_wifi
-from mn_wifi.node import RemoteController
+from mininet.node import RemoteController
+from mn_wifi.node import UserAP
 from mininet.log import setLogLevel, info
 from mn_wifi.cli import CLI
 
 
 def scenario_basic():
 
-    net = Mininet_wifi()
+    net = Mininet_wifi(accessPoint= UserAP)
 
     info("*** Creating nodes\n")
     

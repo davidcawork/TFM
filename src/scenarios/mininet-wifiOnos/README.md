@@ -1,6 +1,6 @@
 # Scenarios developed 
 
-Escenario con Mininet y Onos corriendo en una Ubuntu 22.04 server. Onos (2.5.0) corre de forma remota en una VM aislada tambien con Ubuntu 22.04
+Escenario con Mininet-Wifi y Onos corriendo en una Ubuntu 22.04 server. Onos (2.5.0) corre de forma remota en una VM aislada tambien con Ubuntu 22.04
 
 En la máquina de Mininet, para levantar la topología:
 

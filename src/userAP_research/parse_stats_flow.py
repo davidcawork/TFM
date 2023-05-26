@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 
-import os
 import sys
 import json
 import subprocess
 import re
+
+#   Initially created by @simhond for Python2.7 version.
+#   Updated to Pyhton3 and cleaned up by @davidcawork
 
 # MACROS
 
@@ -14,11 +16,11 @@ def parse_statsFlow(cmd):
     """
     Parse stats-flow command
     """
-    cmd_fmt = ((cmd.replace("\n", "")).split("stat_repl")[1])
-    cmd_json_fmt = re.sub("\[(\w+){", r'["\1",{',
-                          re.sub("(\w+)=", r'"\1":',  cmd_fmt))
-    cmd_json_fmt = re.sub(r'oxm\{.*?\}', lambda match: match.group(
-        0).replace('"', "'"), cmd_json_fmt)
+    cmd_fmt = (cmd.replace("\n", "")).split("stat_repl")[1]
+    cmd_json_fmt = re.sub("\[(\w+){", r'["\1",{', re.sub("(\w+)=", r'"\1":', cmd_fmt))
+    cmd_json_fmt = re.sub(
+        r"oxm\{.*?\}", lambda match: match.group(0).replace('"', "'"), cmd_json_fmt
+    )
     return json.loads(cmd_json_fmt)
 
 
@@ -40,15 +42,20 @@ def print_statsFlow(data):
     stats = data["stats"]
 
     for stat in stats:
-        print("---------------------------------- Table " +
-              stat['table']+" --------------------------------")
-        print("[+] Match: " + stat['match'])
-        print("[+] Duration: " + stat['dur_s'])
-        print("[+] Prio: " + stat['prio'])
-        print("[+] Pkt cnt: " + stat['pkt_cnt'])
-        print("[+] Byte cnt: " + stat['byte_cnt'])
-        print("[+] Insts: " + str(stat['insts']))
-        print("---------------------------------------------------------------------------")
+        print(
+            "---------------------------------- Table "
+            + stat["table"]
+            + " --------------------------------"
+        )
+        print("[+] Match: " + stat["match"])
+        print("[+] Duration: " + stat["dur_s"])
+        print("[+] Prio: " + stat["prio"])
+        print("[+] Pkt cnt: " + stat["pkt_cnt"])
+        print("[+] Byte cnt: " + stat["byte_cnt"])
+        print("[+] Insts: " + str(stat["insts"]))
+        print(
+            "---------------------------------------------------------------------------"
+        )
 
 
 # Main

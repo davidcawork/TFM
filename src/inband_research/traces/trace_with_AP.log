@@ -148,3 +148,10 @@ added intf sta1-wlan0 (0) to node sta1
 added intf sta2-wlan0 (0) to node sta2
 *** sta2 : ('ip link set', 'sta2-wlan0', 'up')
 *** sta2 : ('ethtool -K', <WirelessLink sta2-wlan0>, 'gro', 'off')
+*** Start the controller ***
+*** Set controllers ***
+*** ap1 : ('ofdatapath -i ap1-wlan1 punix:/tmp/ap1 -d 100000000001 --no-slicing 1> /tmp/ap1-ofd.log 2> /tmp/ap1-ofd.log &',)
+*** ap1 : ('ofprotocol unix:/tmp/ap1 tcp:localhost:6633 --fail=closed  --listen=punix:/tmp/ap1.listen 1> /tmp/ap1-ofp.log 2>/tmp/ap1-ofp.log &',)
+*** RUN Mininet-Wifis CLI ***
+*** Starting CLI:
+*** errRun: ['stty', 'echo', 'sane', 'intr', '^C'] 

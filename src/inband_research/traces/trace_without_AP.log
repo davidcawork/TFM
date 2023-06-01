@@ -1,0 +1,78 @@
+*** errRun: ['grep', '-c', 'processor', '/proc/cpuinfo'] 
+4
+  0*** Setting resource limits
+*** Creating nodes
+*** Add Controller (Ryu) ***
+*** errRun: ['which', 'mnexec'] 
+/usr/bin/mnexec
+  0*** errRun: ['which', 'ifconfig'] 
+/usr/sbin/ifconfig
+  0_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:c0'] 45920*** c0 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** c0 : ('echo A | telnet -e A localhost 6633',)
+Telnet escape character is 'A'.
+Trying 127.0.0.1...
+telnet: Unable to connect to remote host: Connection refused
+Unable to contact the remote controller at localhost:6633
+*** Add two WiFi stations ***
+*** errRun: ['which', 'mnexec'] 
+/usr/bin/mnexec
+  0*** errRun: ['which', 'ip', 'addr'] 
+/usr/sbin/ip
+  1_popen ['mnexec', '-cdn', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:sta1'] 45926*** sta1 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cdn', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:sta2'] 45928*** sta2 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** Configuring nodes
+Loading 2 virtual wifi interfaces
+Created mac80211_hwsim device with ID 0
+Created mac80211_hwsim device with ID 1
+rfkill unblock 5
+*** sta1 : ('ip link set wlan0 down',)
+*** sta1 : ('ip link set wlan0 name sta1-wlan0',)
+rfkill unblock 6
+*** sta2 : ('ip link set wlan1 down',)
+*** sta2 : ('ip link set wlan1 name sta2-wlan0',)
+
+added intf sta1-wlan0 (0) to node sta1
+*** sta1 : ('ip link set', 'sta1-wlan0', 'down')
+*** sta1 : ('ip link set', 'sta1-wlan0', 'address', '00:00:00:00:00:02')
+*** sta1 : ('ip link set', 'sta1-wlan0', 'up')
+*** sta1 : ('ip addr flush ', 'sta1-wlan0')
+*** sta1 : ('ip addr add 10.0.0.1/8 brd + dev sta1-wlan0 && ip -6 addr add 2001:0:0:0:0:0:0:1/64 dev sta1-wlan0',)
+*** sta1 : ('ip -6 addr flush ', 'sta1-wlan0')
+*** sta1 : ('ip -6 addr add', '2001:0:0:0:0:0:0:1/64', 'dev', 'sta1-wlan0')
+*** sta1 : ('ip link set lo up',)
+
+added intf sta2-wlan0 (0) to node sta2
+*** sta2 : ('ip link set', 'sta2-wlan0', 'down')
+*** sta2 : ('ip link set', 'sta2-wlan0', 'address', '00:00:00:00:00:03')
+*** sta2 : ('ip link set', 'sta2-wlan0', 'up')
+*** sta2 : ('ip addr flush ', 'sta2-wlan0')
+*** sta2 : ('ip addr add 10.0.0.2/8 brd + dev sta2-wlan0 && ip -6 addr add 2001:0:0:0:0:0:0:2/64 dev sta2-wlan0',)
+*** sta2 : ('ip -6 addr flush ', 'sta2-wlan0')
+*** sta2 : ('ip -6 addr add', '2001:0:0:0:0:0:0:2/64', 'dev', 'sta2-wlan0')
+*** sta2 : ('ip link set lo up',)
+*** sta1 : ('iw dev', 'sta1-wlan0 set txpower fixed 100')
+*** sta1-wlan0: the signal range should be changed to (at least) 116m
+*** >>> See https://mininet-wifi.github.io/faq/#q7 for more information
+*** sta2 : ('iw dev', 'sta2-wlan0 set txpower fixed 100')
+*** sta2-wlan0: the signal range should be changed to (at least) 116m
+*** >>> See https://mininet-wifi.github.io/faq/#q7 for more information
+*** sta1 : ('iw dev', 'sta1-wlan0 set txpower fixed 100')
+*** sta2 : ('iw dev', 'sta2-wlan0 set txpower fixed 100')
+
+*** Build it ***
+*** Configuring nodes
+
+added intf sta1-wlan0 (0) to node sta1
+*** sta1 : ('ip link set', 'sta1-wlan0', 'up')
+*** sta1 : ('ethtool -K', <WirelessLink sta1-wlan0>, 'gro', 'off')
+
+added intf sta2-wlan0 (0) to node sta2
+*** sta2 : ('ip link set', 'sta2-wlan0', 'up')
+*** sta2 : ('ethtool -K', <WirelessLink sta2-wlan0>, 'gro', 'off')
+*** Start the controller ***
+*** RUN Mininet-Wifis CLI ***
+*** Starting CLI:
+*** errRun: ['stty', 'echo', 'sane', 'intr', '^C'] 

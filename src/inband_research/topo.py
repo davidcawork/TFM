@@ -22,11 +22,6 @@ def scenario_basic():
         port=6633,
     )
 
-    info("*** Add one UserAP ***\n")
-    ap1 = net.addAccessPoint(
-        "ap1", mac="00:00:00:00:00:01", position="50,50,0", range=40
-    )
-
     info("*** Add two WiFi stations ***\n")
     sta1 = net.addStation(
         "sta1", mac="00:00:00:00:00:02", ip="10.0.0.1/8", position="20,40,0", range=10
@@ -38,22 +33,12 @@ def scenario_basic():
     info("*** Configuring nodes\n")
     net.configureNodes()
 
-    info("*** Add links ***\n")
-    net.addLink(sta1, ap1)
-    net.addLink(sta2, ap1)
-
-    info("*** Plot he network ***\n")
-    net.plotGraph(max_x=100, max_y=100)
-
     info("\n*** Build it ***\n")
     net.build()
 
     info("*** Start the controller ***\n")
     for controller in net.controllers:
         controller.start()
-
-    info("*** Set controllers ***\n")
-    net.get("ap1").start([c0])
 
     info("*** RUN Mininet-Wifis CLI ***\n")
     CLI(net)

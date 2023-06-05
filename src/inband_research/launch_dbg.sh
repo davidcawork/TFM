@@ -25,8 +25,6 @@ ip link set ap1-wlan1 up
 tc qdisc replace dev ap1-wlan1 root handle 2: netem rate 54.0000mbit latency 1.00ms
 tc qdisc add dev ap1-wlan1 parent 2:1 handle 10: pfifo limit 1000
 iw dev ap1-wlan1 set txpower fixed 1400
-ofdatapath -i ap1-wlan1 punix:/tmp/ap1 -d 100000000001 --no-slicing 1> /tmp/ap1-ofd.log 2> /tmp/ap1-ofd.log &
-ofprotocol unix:/tmp/ap1 tcp:localhost:6633 --fail=closed  --listen=punix:/tmp/ap1.listen 1> /tmp/ap1-ofp.log 2>/tmp/ap1-ofp.log &
 
 # Connect stations to AP
 for sta in ${STA_2_CONN[@]}

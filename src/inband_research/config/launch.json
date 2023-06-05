@@ -1,0 +1,66 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(ap1)ofprotocol",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/secchan/ofprotocol",
+            "args": [
+                "unix:/tmp/ap1",
+                "tcp:localhost:6653",
+                "--fail=closed",
+                "--listen=punix:/tmp/ap1.listen"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "text": "target-run",
+                    "description": "Ofprotocol",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(ap1)ofdatapath",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/udatapath/ofdatapath",
+            "args": [
+                "-i",
+                "ap1-wlan1",
+                "punix:/tmp/ap1",
+                "-d",
+                "000000000001",
+                "--no-slicing"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "text": "target-run",
+                    "description": "Ofdatapath",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ],
+    "compounds": [
+        {
+            "name": "(ap1)ofprotocol/(ap1)ofdatapath",
+            "configurations": [
+                "(ap1)ofprotocol",
+                "(ap1)ofdatapath"
+            ],
+            "preLaunchTask": "${defaultBuildTask}",
+            "stopAll": true
+        }
+    ]
+}

@@ -30,7 +30,7 @@ iw dev ap1-wlan1 set txpower fixed 1400
 for sta in ${STA_2_CONN[@]}
 do
     echo "[+] Connecting ${sta} to UserAP"
-    PID_STA=$(ps aux | grep mininet | grep ${sta} | cut -d' ' -f7)
+    PID_STA=$(ps aux | grep mininet | grep ${sta} | cut -d' ' -f8)
     echo "[+] ${sta} - Detected pid ${PID_STA}"
     nsenter --target ${PID_STA} --net iwconfig ${sta}-wlan0 essid ${AP_SSID} ap ${AP_MAC}
 done
